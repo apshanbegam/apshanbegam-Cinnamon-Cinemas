@@ -51,29 +51,37 @@ namespace Models.Ticket
             int totalTakenSeatsNeeded = 15;
             int totalGeneratedEmptySeats = 0;
 
-            // totalSeats will keep increasing until equal to total empty seats needed
-            while (totalGeneratedEmptySeats != totalTakenSeatsNeeded)
+            if (totalGeneratedEmptySeats==15)
             {
-                // Generate a random number
-                Random r = new Random();
-                var randomNo = r.Next(1, 3);
-                Console.WriteLine(randomNo);
-                // Get a random seat
-
-                var randomSeat = seats[r.Next(seats.Count)];
-
-                // Remove random seat
-                //seats.Remove(randomSeat);
-
-                // Update random seat status
-                if (randomSeat.Status == EStatus.Empty)
-                {
-                    randomSeat.Status = EStatus.Taken;
-
-                    totalGeneratedEmptySeats++;
-                }
-
+                Console.WriteLine("Seats are already full");
             }
+            else
+            {
+                while (totalGeneratedEmptySeats != totalTakenSeatsNeeded)
+                {
+                    // Generate a random number
+                    Random r = new Random();
+                    var randomNo = r.Next(1, 3);
+                    Console.WriteLine(randomNo);
+                    // Get a random seat
+
+                    var randomSeat = seats[r.Next(seats.Count)];
+
+                    // Remove random seat
+                    //seats.Remove(randomSeat);
+
+                    // Update random seat status
+                    if (randomSeat.Status == EStatus.Empty)
+                    {
+                        randomSeat.Status = EStatus.Taken;
+
+                        totalGeneratedEmptySeats++;
+                    }
+
+                }
+            }
+
+            
         }
 
         public void PrintEmptySeats()
